@@ -23,6 +23,16 @@ It demonstrates API interaction, error handling, retry strategies, pagination, p
 - argparse
 - JSON
 
+## Example Usage
+
+```bash
+python openfoodfacts_scraper.py chocolate --limit 5
+```
+
+```bash
+python openfoodfacts_scraper.py pizza --limit 10 --save
+```
+
 ## Project Structure
 
 ```text
