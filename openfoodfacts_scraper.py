@@ -28,6 +28,7 @@ from urllib3.util.retry import Retry
 
 API_URL = "https://world.openfoodfacts.org/cgi/search.pl"
 DEFAULT_PAGE_SIZE = 20
+DEFAULT_LIMIT = 40
 DEFAULT_MAX_PAGES = 2
 DEFAULT_OUTPUT_FILE = "products.json"
 
@@ -235,6 +236,12 @@ def parse_arguments() -> argparse.Namespace:
         default=DEFAULT_MAX_PAGES,
         help=f"Maximum number of pages to fetch. Default: {DEFAULT_MAX_PAGES}",
     )
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=DEFAULT_LIMIT,
+        help=f"Maximum number of products to show. Default: {DEFAULT_LIMIT}",
+    )
 
     parser.add_argument(
         "--save",
@@ -263,7 +270,7 @@ def main() -> None:
         print("Please enter a valid search term.")
         return
 
-    if args.page_size <= 0 or args.max_pages <= 0:
+    if args.page_size <= 0 or args.max_pages <= 0 or args.limit<=0:
         print("Page size and max pages must be positive numbers.")
         return
 
@@ -273,6 +280,7 @@ def main() -> None:
             page_size=args.page_size,
             max_pages=args.max_pages,
         )
+        products = products[: args.limit]
         print_products(products)
 
         if args.save:
