@@ -244,6 +244,12 @@ def parse_arguments() -> argparse.Namespace:
     )
 
     parser.add_argument(
+        "--sort-name",
+        action="store_true",
+        help="Sort products alphabetically by product name.",
+    )
+
+    parser.add_argument(
         "--save",
         action="store_true",
         help="Save results to a JSON file.",
@@ -280,7 +286,14 @@ def main() -> None:
             page_size=args.page_size,
             max_pages=args.max_pages,
         )
-        products = products[: args.limit]
+        if args.sort_name:
+            products = sorted(
+                products,
+                key=lambda product: (product.get("product_name") or "").lower()
+    )
+
+        products = products[:args.limit]
+
         print_products(products)
 
         if args.save:

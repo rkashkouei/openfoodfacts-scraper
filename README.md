@@ -15,6 +15,37 @@ It demonstrates API interaction, error handling, retry strategies, pagination, p
 - Progress bar in the terminal
 - Optional JSON export
 
+## Usage
+
+Search for products:
+
+```bash
+python openfoodfacts_scraper.py chocolate
+```
+
+Limit the number of results:
+
+```bash
+python openfoodfacts_scraper.py chocolate --limit 5
+```
+
+Sort products alphabetically by product name:
+
+```bash
+python openfoodfacts_scraper.py chocolate --limit 10 --sort-name
+```
+
+Save results to a JSON file:
+
+```bash
+python openfoodfacts_scraper.py chocolate --limit 10 --save
+```
+
+Save results to a custom file:
+
+```bash
+python openfoodfacts_scraper.py chocolate --limit 10 --save --output chocolate_products.json
+```
 ## Technologies Used
 
 - Python
