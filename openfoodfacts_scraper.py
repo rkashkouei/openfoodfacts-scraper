@@ -281,6 +281,7 @@ def main() -> None:
         return
 
     try:
+        start_time = time.time()
         products = search_products(
             query=query,
             page_size=args.page_size,
@@ -295,6 +296,8 @@ def main() -> None:
         products = products[:args.limit]
 
         print_products(products)
+        elapsed_time = time.time() - start_time
+        print(f"\nSearch Completed in {elapsed_time:.2f} seconds.")
 
         if args.save:
             save_products_to_json(products, args.output)

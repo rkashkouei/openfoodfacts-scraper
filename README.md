@@ -14,6 +14,7 @@ It demonstrates API interaction, error handling, retry strategies, pagination, p
 - Error handling for network and API issues
 - Progress bar in the terminal
 - Optional JSON export
+- Displays search summary after execution
 
 ## Usage
 
