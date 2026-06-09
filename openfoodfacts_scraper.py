@@ -10,6 +10,7 @@ Features:
 - Shows a progress bar while pages are being processed
 - Handles HTTP, network, and JSON errors safely
 - Can optionally save results to a JSON file
+- Displays search completed time for better user feedback
 
 API source:
 https://world.openfoodfacts.org/
@@ -261,6 +262,11 @@ def parse_arguments() -> argparse.Namespace:
         help=f"Output JSON filename. Default: {DEFAULT_OUTPUT_FILE}",
     )
 
+    parser.add_argument(
+        "--brand",
+        help="Filter products by brand name",
+    )
+
     return parser.parse_args()
 
 
@@ -287,6 +293,12 @@ def main() -> None:
             page_size=args.page_size,
             max_pages=args.max_pages,
         )
+        if args.brand:
+            products = [
+                product
+                for product in products
+                if args.brand.lower() in (product.get("brands") or "").lower()
+            ]
         if args.sort_name:
             products = sorted(
                 products,

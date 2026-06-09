@@ -15,6 +15,7 @@ It demonstrates API interaction, error handling, retry strategies, pagination, p
 - Progress bar in the terminal
 - Optional JSON export
 - Displays search summary after execution
+- Filter products by brand name
 
 ## Usage
 
@@ -46,6 +47,10 @@ Save results to a custom file:
 
 ```bash
 python openfoodfacts_scraper.py chocolate --limit 10 --save --output chocolate_products.json
+```
+
+```bash
+python openfoodfacts_scraper.py chocolate --brand nestle
 ```
 ## Technologies Used
 
